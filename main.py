@@ -31,7 +31,7 @@ while True:
             if bandera == True:
                 array_promedios = calcular_promedio_estudiantes(matriz_notas)
                 print("PROMEDIOS CALCULADOS.")
-                mostrar_promedios(array_promedios,array_nombres)
+                # mostrar_promedios(array_promedios,array_nombres)
                 bandera_promedios = True
             else:
                 print("NO SE HAN CARGADO NOTAS TODAVIA.")

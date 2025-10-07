@@ -243,7 +243,7 @@ def calcular_promedio_estudiantes(matriz_notas: list) -> list:
     list
         Devuelve la lista de promedios actualizada con los valores correspondientes a cada estudiante.
     """
-    array_promedios = crear_array(10,0)
+    array_promedios = crear_array(len(matriz_notas),0)
     for fil in range(len(matriz_notas)):
         suma = sumar_fila(matriz_notas, fil)
         promedio = calcular_promedio(suma, 5)
