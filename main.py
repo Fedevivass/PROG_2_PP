@@ -5,6 +5,7 @@ import os
 
 bandera = False
 bandera_promedios = False
+array_prueba = crear_array(30,0)
 
 while True:
     print("1. Cargar Notas de alumnos.\n"
@@ -31,13 +32,13 @@ while True:
             if bandera == True:
                 array_promedios = calcular_promedio_estudiantes(matriz_notas)
                 print("PROMEDIOS CALCULADOS.")
-                # mostrar_promedios(array_promedios,array_nombres)
+                array_prueba = list(array_promedios)
                 bandera_promedios = True
             else:
                 print("NO SE HAN CARGADO NOTAS TODAVIA.")
         case 4:
             if bandera_promedios == True:
-                lista_ordenada = ordenar_lista(array_promedios,"DESC")
+                lista_ordenada = ordenar_lista(array_prueba,"DESC")
                 mostrar_promedios(lista_ordenada,array_nombres)
             else:
                 print("DEBE CALCULAR LOS PROMEDIOS PRIMERO")
