@@ -61,6 +61,24 @@ def cargar_notas(matriz_notas: list) -> bool:
 
     return retorno
 
+def cargar_alumno(array_nombres: list,array_generos:list,array_legajos:list)->bool:
+    bandera = False
+    if len(array_nombres) > 0 and type(array_nombres) == list:
+        for i in range(len(array_nombres)):
+            nombre = get_string("Ingrese su nombre: ", "ERROR, debe contener letras y espacios ", 15, 3)
+            genero = get_string("Ingrese su genero (f|m|x): ", "ERROR, genero incorrecto ",2, 3)
+            while genero != "f" and genero != "m" and genero != "x":
+                print("GENERO INVALIDO")
+                genero = get_string("Ingrese su genero (f|m|x): ", "ERROR, genero incorrecto ",2,3)
+            legajo = get_int("Ingrese su legajo: ","ERROR, legajo incorrecto debe tener 6 cifras",99999, 999999, 5)
+            array_nombres[i] = nombre
+            array_generos[i] = genero
+            array_legajos[i] = legajo
+        retorno = True
+    else:
+        retorno = False
+
+    return retorno
 
 def mostrar_matriz(matriz: list)->None:
     """
@@ -97,7 +115,7 @@ def mostrar_promedios(array: list, array_nombres: list) -> None:
         La función solo imprime los resultados en pantalla y no devuelve ningún valor.
     """
     for i in range(len(array)):
-        print(f"{array_nombres[i]} promedio {array[i]}")
+        print(f"{array[i]} promedio {array_nombres[i]}")
 
 
 def mostrar_estudiante(array_nombres: list, matriz_notas: list, array_generos: list, array_legajos: list, indice_participante: int) -> bool:
@@ -124,14 +142,16 @@ def mostrar_estudiante(array_nombres: list, matriz_notas: list, array_generos: l
     if indice_participante >= len(array_nombres) or indice_participante < 0:
         retorno = False
     else:
-        print(f"Nombre: {array_nombres[indice_participante]}")
-        print(f"Genero: {array_generos[indice_participante]}")
-        print(f"NOTA 1: {matriz_notas[indice_participante][0]}")
-        print(f"NOTA 2: {matriz_notas[indice_participante][1]}")
-        print(f"NOTA 3: {matriz_notas[indice_participante][2]}")
-        print(f"NOTA 4: {matriz_notas[indice_participante][3]}")
-        print(f"NOTA 5: {matriz_notas[indice_participante][4]}")
-        print(f"Legajo : {array_legajos[indice_participante]}")
+        print(f"{'NOMBRE':<20}{'GENERO':<8}{'NOTA 1':<8}{'NOTA 2':<8}{'NOTA 3':<8}{'NOTA 4':<8}{'NOTA 5':<8}{'LEGAJO':<10}")
+
+        print(f"{array_nombres[indice_participante]:<20}"
+              f"{array_generos[indice_participante]:<8}"
+              f"{matriz_notas[indice_participante][0]:<8}"
+              f"{matriz_notas[indice_participante][1]:<8}"
+              f"{matriz_notas[indice_participante][2]:<8}"
+              f"{matriz_notas[indice_participante][3]:<8}"
+              f"{matriz_notas[indice_participante][4]:<8}"
+              f"{array_legajos[indice_participante]:<10}")
         retorno = True
 
     return retorno
@@ -269,10 +289,19 @@ def mostrar_promedio_materias(matriz_notas: list) -> None:
     None
         La función solo imprime los promedios de cada materia y no devuelve ningún valor.
     """
+    bandera = False
     for col in range(len(matriz_notas[0])):
         suma = sumar_columna(matriz_notas, col)
         promedio = calcular_promedio(suma, len(matriz_notas))
-        print(f"PROMEDIO MATERIA {col+1} : {promedio}")
+        if bandera == False:
+            mayor_promedio = promedio
+            indice_materia = col
+            bandera = True
+        else:
+            if promedio < mayor_promedio:
+                mayor_promedio = promedio
+                indice_materia = col
+    print(f"La materia con mayor promedio general es la: N°{indice_materia + 1} con {mayor_promedio}")
 
 
 def ordenar_lista(array: list, condicion: str) -> list:
@@ -295,20 +324,12 @@ def ordenar_lista(array: list, condicion: str) -> list:
     list
         La misma lista 'array' pero ordenada según la condición indicada.
     """
-    if condicion == "DESC":
-        for izq in range(len(array) - 1):
-            for der in range(izq + 1, len(array)):
-                if array[izq] < array[der]:
-                    auxiliar = array[izq]
-                    array[izq] = array[der]
-                    array[der] = auxiliar
-    elif condicion == "ASC":
-        for izq in range(len(array) - 1):
-            for der in range(izq + 1, len(array)):
-                if array[izq] > array[der]:
-                    auxiliar = array[izq]
-                    array[izq] = array[der]
-                    array[der] = auxiliar
+    for izq in range(len(array) - 1):
+        for der in range(izq + 1, len(array)):
+            if (condicion == "DESC" and array[izq] < array[der]) or (condicion == "ASC" and array[izq] > array[der]):
+                auxiliar = array[izq]
+                array[izq] = array[der]
+                array[der] = auxiliar
     return array
 
 
@@ -351,3 +372,16 @@ def buscar_estudiante(array_legajos: list, array_nombres: list, matriz_notas: li
             break
     if bandera == False:
         print("ESTUDIANTE NO ENCONTRADO")
+
+
+def crear_lista_notas(matriz_notas:list,lista_notas:list)->list:
+    for i in range(len(matriz_notas)):
+        for j in range(len(matriz_notas[0])):
+            nota = matriz_notas[i][j]
+            lista_notas[nota - 1] += 1
+
+    return lista_notas
+
+def mostrar_array(array:list)->None:
+    for i in range(len(array)):
+        print(f"La nota {i+1} se repite : {array[i]}")

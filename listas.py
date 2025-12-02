@@ -1,18 +1,14 @@
 from funciones import *
 matriz_notas = crear_matriz(30,5,0)
 
-# array_nombres = [
-#     "Lucas Fernández",
-#     "Valentina Gómez",
-#     "Martín Rodríguez",
-#     "Camila López",
-#     "Santiago Pérez",
-#     "Julieta Romero",
-#     "Tomás Herrera",
-#     "Mía Torres",
-#     "Benjamín Silva",
-#     "Sofía Morales"
-# ]
+# array_nombres = crear_array(30,0)
+
+# array_legajos = crear_array(30,0)
+
+# array_generos = crear_array(30,0)
+
+lista_notas = [0,0,0,0,0,0,0,0,0,0]
+
 
 array_nombres = [
     "Lucas Fernández",
@@ -47,26 +43,17 @@ array_nombres = [
     "Candelaria Molina"
 ]
 
-# array_generos = ["M","F","M","F","M","F","M","F","M","F"]
-
 array_generos = [
     "M","F","M","F","M","F","M","F","M","F",
     "M","F","M","F","M","F","M","F","M","F",
     "M","F","M","F","M","F","M","F","M","F"
 ]
 
-
-# array_estados = ["1","0","1","1","1","0","0","0","1","1"]
-
 array_estados = [
     "1","0","1","1","1","0","0","0","1","1",
     "1","0","1","0","1","0","1","1","0","1",
     "0","1","1","0","0","1","0","1","1","0"
 ]
-
-
-
-# array_legajos = [102345, 112678, 123901, 134562, 145893, 156204, 167835, 178946, 189357, 190468]
 
 array_legajos = [
     102345, 112678, 123901, 134562, 145893, 156204, 167835, 178946, 189357, 190468,

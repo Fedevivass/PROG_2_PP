@@ -21,7 +21,9 @@ while True:
         case 1:
             print("CARGANDO NOTAS...")
             cargar_notas(matriz_notas)
-            print("NOTAS CARGADAS CON EXITO.")
+            #print("NOTAS CARGADAS CON EXITO.")
+            print("CARGAR ALUMNO MANUALMENTE:")
+            #cargar_alumno(array_nombres,array_generos,array_legajos)
             bandera = True
         case 2:
             if bandera == True:
@@ -38,8 +40,8 @@ while True:
                 print("NO SE HAN CARGADO NOTAS TODAVIA.")
         case 4:
             if bandera_promedios == True:
-                lista_ordenada = ordenar_lista(array_prueba,"DESC")
-                mostrar_promedios(lista_ordenada,array_nombres)
+                array_prueba = ordenar_lista(array_prueba,"DESC")
+                mostrar_promedios(array_prueba,array_nombres)
             else:
                 print("DEBE CALCULAR LOS PROMEDIOS PRIMERO")
         case 5:
@@ -53,7 +55,8 @@ while True:
             else:
                 print("DEBE CALCULAR LOS PROMEDIOS PRIMERO")
         case 7:
-            pass
+            lista_notas = crear_lista_notas(matriz_notas,lista_notas)
+            mostrar_array(lista_notas)
         case 8:
             break
     
